@@ -97,7 +97,79 @@ Para quem quiser visualizar o projeto na IDE clique no teclado a tecla `ponto`, 
     - Protege o sistema baseado no que ele foi projetado para suportar;
     - Preferência programada por tipo de client;
 - Circuit breaker;
-    -
+    - Protege o sistema fazendo com que as requisições feitas para ele sejam negadas. Ex.: 500;
+    - Circuito Fechado - RequisiçÕes chegam normalmente;
+    - Circuito Aberto - Requisições não chegam ao sistema. Erro instantâneo ao client;
+    - Meio Aberto - Permite uma quantidade limitada de requisiçÕes para verificação se o sistema tem condições de voltar ao ar integralmente;
+- API Gateway;
+    - Garante que requisições inapropriadas cheguem até o sistema. Ex.: usuário não autenticado;
+    - Implementa políticas de Rate Limiting, Health check, etc;
+- Service Mesh;
+    - Controla o tráfego de rede;
+    - Evitar implementações de proteção pelo próprio sistema;
+    - mTLS;
+    - Circuit breaker, retry, timeout, fault injection, etc;
+- Trabalhar de forma assíncrona;
+    - Evita perda de dados;
+    - Não há perda de dados no envio de uma transação se o server estiver fora;
+    - Servidor poder processar a transação em seu tempo quando estiver online;
+    - Entender com profundidade o message broker / sistema de stream;
+- Garantias de entrega: Retry;
+    - Gráficos no Mind Map;
+- Situações complexas;
+    - O que acontece se o message broker cair?
+    - Haverá perda de mensagens?
+    - Seu sistema ficará fora do ar?
+    - Como garantir resiliência?
+- Transactional outbox;
+    - Basicamente salvar essa mensagem antes te enviar para o message broker;
+    - Assim que receber a mensagem apagar o registro;
+- Garantia de recebimento;
+    - Auto Ack - false e commit manual;
+    - Prefetch alinhado a volumetria;
+- Idempotência e políticas de fallback;
+    - Lidar com duplicidades de informações;
+    - Poíticas claras de fallback;
+- Observabilidade;
+    - APM - Application Performance Monitor;
+    - Tracing distribuído;
+    - Métricas personalizadas;
+    - Spans personalizados;
+    - Open Telemetry;
+- Rerefrências:
+    - Exponential backoff and Jitter: https://aws.amazon.com/pt/blogs/architecture/exponential-backoff-and-jitter/
+    - Remédio ou Veneno - https://www.youtube.com/watch?v=1MkPpKPyBps
+    - OTEL - https://opentelemetry.io/
+
+### Coreografia e Orquestração
+- Gráfico no Mind Map;
+
+### Padrões
+- API Composition;
+    - Service Composer;
+    - API Gateway;
+- Decompose by business capability;
+- Strangler application;
+- ACL (Anti Curruption Layer);
+- API Gateway;
+- BFF (Backend for frontends);
+- Transactional Outbox;
+- Secret Manager / Vault;
+- Padronização de Logs;
+- Open Telemetry;
+- Service Template;
+
+### C4 Model
+- PlantUML Vscode extension;
+- https://github.com/plantuml-stdlib/C4-PlantUML;
+- https://graphviz.org/download/;
+- Java;
+
+#### Context:
+<img alt="Tela 01" src="out/context/context.png" width="75%" style="margin: 15px 0" />
+
+#### Container:
+<img alt="Tela 01" src="out/containers/containers.png" width="75%" style="margin: 15px 0" />
 
 ### Link Mind Map:
 https://whimsical.com/arquitetura-baseada-em-microsservicos-H8QwjyxZmd8hJFzhUpaFwp
